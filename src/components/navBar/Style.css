@@ -1,0 +1,17 @@
+#nav {
+  background-color: #b9dded;
+  min-height: 100vh;
+}
+
+.navButton {
+  margin-left: 15px;
+}
+
+img {
+  width: 200px;
+  margin-left: 15px;
+}
+
+.service-navbar .nav-link.active {
+  background-color: #5bb6e6 !important;
+}

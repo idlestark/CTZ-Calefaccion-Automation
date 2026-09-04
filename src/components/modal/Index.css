@@ -1,0 +1,46 @@
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.418);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1050;
+}
+
+.form-box-fixed {
+  padding: 20px;
+  background-color: #b9dded;
+  box-shadow: 10px 0px 50px 5px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+  width: 50% !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
