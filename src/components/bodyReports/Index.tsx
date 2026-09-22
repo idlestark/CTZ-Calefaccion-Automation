@@ -1,20 +1,11 @@
 import { useState } from "react";
 import IndexItems from "./IndexItems";
 import IndexModal from "../modal/Index";
-import FormSinIntermediario from "../bodyReportSeguro/Index";
 
 const Index = () => {
   const [showItems, setShowItems] = useState(false);
   const [showAseguradora, setShowAseguradora] = useState(false);
   const [aseguradora, setAseguradora] = useState("");
-  const handlePdf = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (file.type !== "application/pdf") {
-      alert("Solo se permiten archivos PDF");
-      return;
-    }
-  };
   return (
     <>
       <h1>Seccion 3</h1>
@@ -109,28 +100,6 @@ const Index = () => {
             )}
           </div>
         </div>
-        {showAseguradora && aseguradora === "sin-intermediario" && (
-          <FormSinIntermediario />
-        )}
-        {showAseguradora &&
-          (aseguradora === "mercantil-andina" ||
-            aseguradora === "federacion") && (
-            <div className="border rounded p-3 mt-2">
-              <label className="foorm-label">
-                Subir Archivo PDF de la aseguradora
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                accept="application/pdf"
-                onChange={handlePdf}
-              />
-
-              <small className="form-text text-muted">
-                Solo se permiten archivos PDF
-              </small>
-            </div>
-          )}
         <div className="col-12">
           <button
             type="button"
