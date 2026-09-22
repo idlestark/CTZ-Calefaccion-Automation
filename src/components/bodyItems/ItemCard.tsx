@@ -11,7 +11,7 @@ type Props = {
 };
 
 function ItemCard({ item, isSelling }: Props) {
-  const [edit, setEdit] = useState(false);
+  const [edit] = useState(false);
   return (
     <>
       <div className="col pt-4">
@@ -22,6 +22,7 @@ function ItemCard({ item, isSelling }: Props) {
             alt="Aca va la imagen del producto"
             style={{ height: "200px", objectFit: "contain" }}
           />
+
           <div className="card-body">
             <h4 className="card-title">Nombre: {item.nombre}</h4>
             <h6>Id: {item.id}</h6>

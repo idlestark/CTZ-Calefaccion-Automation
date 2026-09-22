@@ -1,4 +1,3 @@
-import McLogo from "../../assets/mc-logo.png";
 import { NavLink } from "react-router-dom";
 import "./Style.css";
 

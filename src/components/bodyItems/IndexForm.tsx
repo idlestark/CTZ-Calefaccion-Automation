@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import type { Item } from "../../models/Item";
 import { useEffect, useState } from "react";
 

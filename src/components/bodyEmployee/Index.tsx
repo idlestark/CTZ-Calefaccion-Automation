@@ -1,4 +1,4 @@
-import CardClient from "./CardClient";
+import CardClient from "./CardEmployee";
 import { clientesEjemplo } from "../../models/Client";
 import NavSearch from "../searchBar/Index";
 import { useState } from "react";

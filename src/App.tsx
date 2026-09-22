@@ -2,10 +2,10 @@ import NavBar from "./components/navBar/Index";
 import BodyItems from "./components/bodyItems/Index";
 import BodyReports from "./components/bodyReports/Index";
 import BodyReportList from "./components/bodyReportList/Index";
-import BodyClients from "./components/bodyClients/Index";
+import BodyEmployee from "./components/bodyEmployee/Index";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import StockEditForm from "../src/components/bodyItems/IndexForm";
-import ClientFormEdit from "../src/components/bodyClients/IndexForm";
+import EmployeeFormEdit from "./components/bodyEmployee/IndexForm";
 import "./App.css";
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
             <Routes>
               <Route path="/stock" element={<BodyItems />} />
               <Route path="/stock/edit/:id" element={<StockEditForm />} />
-              <Route path="/client" element={<BodyClients />} />
-              <Route path="/client/edit/:id" element={<ClientFormEdit />} />
+              <Route path="/employee" element={<BodyEmployee />} />
+              <Route path="/employee/edit/:id" element={<EmployeeFormEdit />} />
               <Route path="/report" element={<BodyReports />} />
               <Route path="/reportList" element={<BodyReportList />} />
             </Routes>

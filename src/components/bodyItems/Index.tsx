@@ -11,6 +11,7 @@ const Index = () => {
   return (
     <>
       <h1>Seccion 1</h1>
+
       <IndexSearch
         actions={["stock"]}
         onAdd={() => setShowForm(true)}
