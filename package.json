@@ -1,5 +1,5 @@
 {
-  "name": "turnos-lavarropas",
+  "name": "ctz-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,8 +14,8 @@
   },
   "main": "electron.cjs",
   "build": {
-    "appId": "com.turnoslavarropas.app",
-    "productName": "Turnos Lavarropas",
+    "appId": "com.ctz.app",
+    "productName": "Fabrica CTZ",
     "directories": {
       "output": "release"
     },

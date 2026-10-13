@@ -1,5 +1,4 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "../bodyReports/Index";
 import type { Client } from "../../models/Client";
 import { NavLink } from "react-router-dom";
 

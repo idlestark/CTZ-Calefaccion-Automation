@@ -182,18 +182,10 @@
     border-right-color: var(--border);
   }
 }
-.app-title {
-  background-color: #b9dded;
-  padding: 20px 25px;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 30px;
-}
 
 .main-background {
-  background-color: #f4f8fa;
+  background: radial-gradient(circle, #151515, #0e0e0e);
 }
-
 body {
   margin: 0;
   padding: 0;

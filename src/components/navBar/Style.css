@@ -1,17 +1,24 @@
 #nav {
-  background-color: #b9dded;
+  background-color: #111111;
   min-height: 100vh;
+  border-right: 4px solid #232323;
+}
+
+#nav a {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-link.button.active {
+  background-color: #232323 !important;
+  border-radius: 0;
 }
 
 .navButton {
-  margin-left: 15px;
+  padding: 10px 16px !important;
 }
 
 img {
   width: 200px;
   margin-left: 15px;
-}
-
-.service-navbar .nav-link.active {
-  background-color: #5bb6e6 !important;
 }
