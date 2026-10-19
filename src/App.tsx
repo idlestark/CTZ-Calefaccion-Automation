@@ -1,7 +1,7 @@
 import NavBar from "./components/navBar/Index";
 import BodyEmployee from "./components/bodyEmployee/Index";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import EmployeeFormEdit from "./components/bodyEmployee/IndexForm";
+import EmployeeHistory from "./components/bodyHistory/Index";
 import BodyLogin from "./components/bodyLogin/Index";
 import "./App.css";
 
@@ -16,7 +16,10 @@ function App() {
               <Route path="/" element={<Navigate to="employee" replace />} />
               <Route path="/employee" element={<BodyEmployee />} />
               <Route path="/login" element={<BodyLogin />} />
-              <Route path="/employee/edit/:id" element={<EmployeeFormEdit />} />
+              <Route
+                path="/employee/:id/history"
+                element={<EmployeeHistory />}
+              />
             </Routes>
           </div>
         </main>

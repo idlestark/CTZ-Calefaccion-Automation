@@ -1,0 +1,33 @@
+.card-body {
+  background-color: #20201f !important;
+  color: white !important;
+  border: 0px;
+}
+
+.card {
+  background-color: #20201f !important;
+}
+
+.card-text {
+  font-size: 20px;
+}
+
+.employee-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #424242;
+}
+
+h5 {
+  color: #616161 !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

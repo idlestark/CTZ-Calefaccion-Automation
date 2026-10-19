@@ -9,7 +9,7 @@ function NavBar({}: Props) {
     { label: "Reloj", path: "/reloj" },
     { label: "Justificaciones", path: "/justificaciones" },
     { label: "Historial", path: "/historial" },
-    { label: "Empleados", path: "/empleados" },
+    { label: "Empleados", path: "/employee" },
   ];
 
   return (

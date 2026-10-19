@@ -16,11 +16,12 @@
 }
 
 .form-box-fixed {
+  color: white;
   padding: 20px;
-  background-color: #b9dded;
+  background-color: #20201f;
   box-shadow: 10px 0px 50px 5px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease-out;
-  width: 50% !important;
+  width: 20% !important;
 }
 
 @keyframes fadeIn {

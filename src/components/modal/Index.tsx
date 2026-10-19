@@ -4,23 +4,13 @@ import "./Index.css";
 
 type Props = {
   children: React.ReactNode;
-  edit?: boolean;
 };
 
-function Index({ children, edit }: Props) {
+function Index({ children }: Props) {
   return (
     <div className="m-0 modal-backdrop-custom w-100 h-100">
       <div className="modal-dialog rounded form-box-fixed">
-        <div className="modal-content">
-          {children}
-          <div className="modal-footer d-flex justify-content-between">
-            <div>
-              {edit && (
-                <button className="btn btn-danger me-1">eliminar</button>
-              )}
-            </div>
-          </div>
-        </div>
+        <div className="modal-content">{children}</div>
       </div>
     </div>
   );

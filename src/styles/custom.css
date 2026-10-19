@@ -1,0 +1,82 @@
+/*
+///////////////////////////////////////
+SEARCH BAR
+///////////////////////////////////////
+*/
+
+.form-control.searchBar {
+  width: 100%;
+  height: 40px;
+  background-color: #20201f;
+  border: 0px;
+  color: white;
+}
+
+.form-control.searchBar::placeholder {
+  color: #bfbfbf34;
+}
+
+.form-control.searchBar:focus {
+  box-shadow: none;
+  border: 0px;
+  outline: none;
+  background-color: #20201f;
+  color: white;
+}
+
+/*
+///////////////////////////////////////
+BUTTONS
+///////////////////////////////////////
+*/
+
+.button-orange {
+  background-color: #f25a27 !important;
+  height: 40px;
+  color: white !important;
+  border: 0px !important;
+}
+
+.button-transluce {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 2px solid #424242 !important;
+  color: white !important;
+}
+
+.button-orange,
+.button-transluce {
+  width: fit-content;
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+/*
+///////////////////////////////////////
+TEXT
+///////////////////////////////////////
+*/
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+input {
+  background-color: #111111 !important;
+  border: 2px solid #424242 !important;
+  color: white !important;
+}
+
+.form-control.input-dark:focus,
+.form-select.input-dark:focus {
+  box-shadow: none;
+  outline: none;
+  border-color: transparent;
+}

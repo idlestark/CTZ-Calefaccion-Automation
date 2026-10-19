@@ -1,77 +1,23 @@
-type Action = "stock" | "client" | "record";
-
 type Props = {
-  actions?: Action[];
   onAdd?: () => void;
-  isSelling?: boolean;
-  onToggleSell?: (val: boolean) => void;
 };
 
-function Index({ actions, onAdd, isSelling = false, onToggleSell }: Props) {
+function Index({ onAdd }: Props) {
   return (
-    <nav className="navbar bg-body-tertiary">
-      <div className="container-fluid p-0">
-        <div>
-          {actions && actions.includes("stock") && (
-            <>
-              <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={onAdd}
-              >
-                agregar item
-              </button>
-              {!isSelling ? (
-                <button
-                  className="btn btn-primary me-2"
-                  type="button"
-                  onClick={() => onToggleSell?.(true)}
-                >
-                  Registrar venta particular
-                </button>
-              ) : (
-                <>
-                  <button className="btn btn-warning me-2" type="button">
-                    <i className="bi bi-cart-check me-1"></i> (2) items
-                  </button>
-                  <button className="btn btn-success me-2" type="button">
-                    Completar venta
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    type="button"
-                    onClick={() => onToggleSell?.(false)}
-                  >
-                    Cancelar venta
-                  </button>
-                </>
-              )}
-            </>
-          )}
-          {actions && actions.includes("client") && (
-            <button
-              className="btn btn-primary me-2"
-              type="button"
-              onClick={onAdd}
-            >
-              agregar Cliente
-            </button>
-          )}
-          {actions && actions.includes("record") && (
-            <button className="btn btn-primary me-2" type="button">
-              Filtrar
-            </button>
-          )}
-        </div>
-        <form className="d-flex" role="search">
+    <nav className="navbar">
+      <div className="container-fluid p-0 mb-2 mt-3">
+        <form className="d-flex flex-grow-1" role="search">
           <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
+            className="form-control searchBar me-3 pt-2 pb-2"
+            list="datalistOptions"
+            id="exampleDataList"
+            placeholder="Buscar"
           />
-          <button className="btn btn-outline-success" type="submit">
-            Search
+          {/* La idea es que la barra se cree una vez y despues se usa para las secciones 
+          especificas, por ahora queda con el boton de la parte de empleados, pero despues
+          se acomoda */}
+          <button className="btn button-orange" type="submit" onClick={onAdd}>
+            Agregar Empleado
           </button>
         </form>
       </div>

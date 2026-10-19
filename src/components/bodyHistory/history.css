@@ -1,0 +1,76 @@
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.history-year {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.history-year span {
+  color: #f65c2a;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 1050px;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background-color: #20201f;
+  color: white;
+}
+
+.month-name {
+  font-size: 1.6rem;
+}
+
+.month .btn {
+  padding: 4px 16px;
+  white-space: nowrap;
+}
+
+.history-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.history-back {
+  justify-self: start;
+}
+
+.history-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.history-profile h4 {
+  margin: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.history-dni {
+  margin: 0;
+  color: #8a8a8a;
+}
+
+.history-header .history-back {
+  justify-self: start;
+  align-self: center;
+}

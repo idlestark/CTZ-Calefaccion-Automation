@@ -1,5 +1,5 @@
-import CardClient from "./CardEmployee";
-import { clientesEjemplo } from "../../models/Client";
+import CardEmployee from "./CardEmployee";
+import { employees } from "../../models/employee";
 import NavSearch from "../searchBar/Index";
 import { useState } from "react";
 import IndexForm from "./IndexForm";
@@ -11,11 +11,14 @@ function Index({}: Props) {
   const [showForm, setShowForm] = useState(false);
   return (
     <>
-      <h1>Seccion 2</h1>
-      <NavSearch actions={["client"]} onAdd={() => setShowForm(true)} />
+      <NavSearch onAdd={() => setShowForm(true)} />
       <div className="row row-cols-1 row-cols-md-4 mb-5 g-4">
-        {clientesEjemplo.map((client) => (
-          <CardClient key={client.id} client={client} />
+        {employees.map((employee) => (
+          <CardEmployee
+            key={employee.id}
+            employee={employee}
+            onSave={() => {}}
+          />
         ))}
       </div>
       {showForm && (
