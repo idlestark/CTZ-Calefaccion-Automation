@@ -1,5 +1,5 @@
 import CardEmployee from "./CardEmployee";
-import { employees } from "../../models/employee";
+import { employees } from "../../models/Employee";
 import NavSearch from "../searchBar/Index";
 import { useState } from "react";
 import IndexForm from "./IndexForm";
