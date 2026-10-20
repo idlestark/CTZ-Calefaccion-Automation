@@ -20,7 +20,7 @@ function NavBar({}: Props) {
         role="tablist"
         aria-orientation="vertical"
       >
-        <img src="" alt="Aca se puede colocar un logo" />
+        <img src="src\assets\logo.png" alt="" />
 
         {sections.map(({ label, path }) => (
           <NavLink
