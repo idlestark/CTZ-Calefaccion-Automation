@@ -2,7 +2,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./employeeCard.css";
 import "../../styles/custom.css";
 import Avatar from "./avatar";
-import type { Employee } from "../../models/Employee";
+import type { Employee } from "../../models/Employee.ts";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 

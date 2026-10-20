@@ -2,7 +2,7 @@ import "./history.css";
 import "../../styles/custom.css";
 import Avatar from "../bodyEmployee/avatar";
 import { useParams } from "react-router-dom";
-import { employees } from "../../models/Employee";
+import { employees } from "../../models/Employee.ts";
 
 type Props = {};
 

@@ -1,5 +1,5 @@
 import CardEmployee from "./CardEmployee";
-import { employees } from "../../models/Employee";
+import { employees } from "../../models/Employee.ts";
 import NavSearch from "../searchBar/Index";
 import { useState } from "react";
 import IndexForm from "./IndexForm";
