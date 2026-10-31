@@ -2,7 +2,12 @@
   background-color: #111111;
   min-height: 100vh;
   border-right: 4px solid #232323;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
+
+.nav-inner { width: 256px; height: 100%; padding-bottom: 14px; }
 
 #nav a {
   color: #fff;
@@ -16,9 +21,23 @@
 
 .navButton {
   padding: 10px 16px !important;
+  width: 100%;
 }
 
-img {
+#nav img {
   width: 200px;
-  margin-left: 15px;
+  margin: 28px 0 60px 15px;
 }
+
+.nav-user {
+  margin-top: auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.95rem;
+}
+.nav-role { color: #6f6f6f; }
+.nav-logout { background: none; border: 0; color: var(--c-fg, #fff); font-size: 1.2rem; padding: 4px 6px; }
+.nav-logout:hover { color: #f25a27; }

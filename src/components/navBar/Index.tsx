@@ -1,32 +1,31 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Style.css";
-import "../../styles/custom.css";
+import logo from "../../assets/logo.png";
+import { useAuth } from "../../auth";
 
-type Props = {};
+type Section = { label: string; path: string; admin?: boolean };
 
-function NavBar({}: Props) {
-  const sections = [
-    { label: "Reloj", path: "/reloj" },
-    { label: "Justificaciones", path: "/justificaciones" },
-    { label: "Historial", path: "/historial" },
-    { label: "Empleados", path: "/employee" },
-  ];
+const SECTIONS: Section[] = [
+  { label: "Reloj", path: "/reloj", admin: true },
+  { label: "Justificaciones", path: "/justificaciones" },
+  { label: "Historial", path: "/historial" },
+  { label: "Empleados", path: "/employee", admin: true },
+  { label: "Ajustes", path: "/ajustes" },
+];
+
+function NavBar() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  if (!user) return null;
+  const sections = SECTIONS.filter((s) => !s.admin || user.role === "admin");
 
   return (
-    <div className="d-flex align-items-start" id="nav">
-      <div
-        className="nav flex-column nav-pills"
-        id="v-pills-tab"
-        role="tablist"
-        aria-orientation="vertical"
-      >
-        <img src="src\assets\logo.png" alt="" />
+    <div className="d-flex align-items-start flex-shrink-0" id="nav">
+      <div className="nav flex-column nav-pills nav-inner" id="v-pills-tab">
+        <img src={logo} alt="CTZ" />
 
         {sections.map(({ label, path }) => (
-          <NavLink
-            className="navButton nav-link button d-flex justify-content-between"
-            to={path}
-          >
+          <NavLink key={path} className="navButton nav-link button d-flex justify-content-between" to={path}>
             {({ isActive }) => (
               <>
                 {label}
@@ -35,6 +34,23 @@ function NavBar({}: Props) {
             )}
           </NavLink>
         ))}
+
+        <div className="nav-user">
+          <span>
+            {user.name} <span className="nav-role">- {user.role === "admin" ? "Administrador" : "Sub-administrador"}</span>
+          </span>
+          <button
+            type="button"
+            className="nav-logout"
+            title="Cerrar sesión"
+            onClick={async () => {
+              await logout();
+              navigate("/login");
+            }}
+          >
+            <i className="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
       </div>
     </div>
   );

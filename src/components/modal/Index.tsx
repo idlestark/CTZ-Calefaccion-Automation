@@ -1,6 +1,5 @@
 import React from "react";
 import "./Index.css";
-//importo registro del item...
 
 type Props = {
   children: React.ReactNode;

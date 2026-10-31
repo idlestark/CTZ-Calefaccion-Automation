@@ -1,0 +1,3 @@
+.just-page { max-width: 1000px; margin: 0 auto; padding-bottom: 110px; }
+.just-new { position: fixed; bottom: 36px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; padding-left: 256px; }
+.just-new .btn { pointer-events: auto; }

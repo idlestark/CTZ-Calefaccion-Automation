@@ -21,6 +21,12 @@ h5 {
   color: #616161 !important;
 }
 
+.card-title {
+  overflow: hidden;
+  max-width: 275px;
+  white-space: nowrap;
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;

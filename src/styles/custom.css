@@ -47,7 +47,6 @@ BUTTONS
 .button-transluce {
   width: fit-content;
   flex: 0 0 auto;
-  align-self: flex-start;
 }
 /*
 ///////////////////////////////////////

@@ -10,7 +10,9 @@
     "electron:dev": "set ELECTRON_DEV=true&& electron .",
     "electron:build": "npm run build && electron-builder",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test test/*.test.cjs",
+    "postinstall": "electron-builder install-app-deps"
   },
   "main": "electron.cjs",
   "build": {
@@ -22,6 +24,7 @@
     "files": [
       "dist/**/*",
       "electron.cjs",
+      "electron/**/*",
       "package.json"
     ],
     "win": {
@@ -29,6 +32,7 @@
     }
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.3.0",
     "better-sqlite3": "^13.0.3",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",

@@ -44,11 +44,14 @@
   color: #888;
 }
 
+.logo-img {
+  width: 80%;
+}
+
 .login-header h2 {
   font-size: 20px;
   font-weight: 500;
-  margin: 0 0 8px 0;
-  color: #e0e0e0;
+  color: #989898;
 }
 
 .subtitle {
@@ -76,12 +79,14 @@
 .input-wrapper {
   display: flex;
   align-items: center;
-  background-color: #121212;
-  border: 1px solid #333;
   border-radius: 6px;
   padding: 0 12px;
   height: 44px;
   transition: border-color 0.2s;
+}
+
+.input-wrapper input {
+  width: 275px;
 }
 
 .input-wrapper:focus-within {
@@ -102,11 +107,12 @@
   color: #fff;
   outline: none;
   font-size: 14px;
-  width: 100%;
+  width: 235px;
 }
 
 .input-wrapper input::placeholder {
-  color: #444;
+  color: #989898;
+  padding: 5px;
 }
 
 .toggle-password {
@@ -117,6 +123,7 @@
   display: flex;
   align-items: center;
   padding: 0;
+  margin-left: 10px;
   outline: none;
 }
 

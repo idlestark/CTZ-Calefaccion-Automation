@@ -1,6 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
+import { useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './Login.css';
+import logo from '../../assets/logo.png';
+import { useAuth, homeFor } from '../../auth';
+import Dialog from '../ui/Dialog';
+import ConnectionSettings from '../ui/ConnectionSettings';
+import { local } from '../../api';
 
 function Index() {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,24 +15,29 @@ function Index() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Hook para redirigir
+  const [busy, setBusy] = useState(false);
+  const [showConn, setShowConn] = useState(false);
+  const [mode, setMode] = useState<'host' | 'client'>('host');
+  const { user, login } = useAuth();
   const navigate = useNavigate();
 
-  // Función que se ejecuta al presionar "Ingresar"
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault(); // Evita que la página se recargue
+  useEffect(() => {
+    local().info().then((i) => setMode(i.mode)).catch(() => {});
+  }, []);
 
-    // Aquí definimos nuestro usuario hardcodeado
-    const hardcodedUser = "admin";
-    const hardcodedPass = "admin123";
+  if (user) return <Navigate to={homeFor(user.role)} replace />;
 
-    if (username === hardcodedUser && password === hardcodedPass) {
-      // Si coinciden, limpiamos errores y redirigimos a /employee
-      setError('');
-      navigate('/employee');
-    } else {
-      // Si fallan, mostramos un error
-      setError('Usuario o contraseña incorrectos');
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError('');
+    try {
+      await login(username.trim(), password);
+      navigate('/');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo iniciar sesión.');
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -37,44 +47,41 @@ function Index() {
         
         <div className="login-header">
           <div className="logo-container">
-            <img src="src\assets\logo.png" alt="" />
+            <img src={logo} alt="CTZ" className="logo-img"/>
           </div>
-          <h2>Iniciar Sesión</h2>
-          <p className="subtitle">Ingresa con tu usuario para continuar</p>
+          <h2>Iniciar sesión</h2>
         </div>
 
-        {/* Agregamos el onSubmit al formulario */}
         <form className="login-form" onSubmit={handleLogin}>
           
           <div className="form-group">
-            <label htmlFor="username">Usuario</label>
             <div className="input-wrapper">
               <span className="input-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               </span>
-              <input 
+              <input
                 type="text" 
                 id="username" 
                 placeholder="Usuario" 
                 autoComplete="off"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)} /* Capturamos el usuario */
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
             <div className="input-wrapper">
               <span className="input-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
               <input
+                className="input"
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} /* Capturamos la contraseña */
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
@@ -94,12 +101,23 @@ function Index() {
           {/* Mensaje de error condicional */}
           {error && <p style={{ color: '#ff4c4c', fontSize: '13px', textAlign: 'center', marginTop: '-10px', marginBottom: '10px' }}>{error}</p>}
 
-          <button type="submit" className="btn-submit">Ingresar</button>
+          <button type="submit" className="btn-submit" disabled={busy}>{busy ? 'Ingresando…' : 'Ingresar'}</button>
         </form>
 
         <div className="login-footer">
-          <a href="#">Si olvidaste tu contraseña, hace click acá</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); setShowConn(true); }}>
+            Conexión entre computadoras ({mode === 'host' ? 'principal' : 'secundaria'})
+          </a>
         </div>
+
+        {showConn && (
+          <Dialog width={520} onClose={() => setShowConn(false)}>
+            <h3>Conexión</h3>
+            <div className="ctz-dialog-body">
+              <ConnectionSettings onClose={() => setShowConn(false)} />
+            </div>
+          </Dialog>
+        )}
 
       </div>
     </div>

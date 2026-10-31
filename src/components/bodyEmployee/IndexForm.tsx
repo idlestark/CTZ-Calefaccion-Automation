@@ -1,113 +1,55 @@
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useState } from "react";
 import "../../styles/custom.css";
 
 type Props = {
-  onClose?: () => void;
+  onClose: () => void;
+  onCreate: (data: { id: number; name: string; dni: string }) => Promise<string | null>;
+  initial?: { id?: number; name?: string };
 };
 
-function IndexForm({ onClose }: Props) {
-  const location = useLocation();
-  const navigate = useNavigate();
+/** Alta de empleado. El ID es el número que el reloj le asigna (necesario para cruzar los registros). */
+function IndexForm({ onClose, onCreate, initial }: Props) {
+  const [form, setForm] = useState({ id: initial?.id ? String(initial.id) : "", name: initial?.name ?? "", dni: "" });
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  const employeeEditar = location.state?.employee;
-  const esEdicion = Boolean(employeeEditar);
+  const change = (e: React.ChangeEvent<HTMLInputElement>) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+  const valid = Number(form.id) > 0 && form.name.trim() !== "";
 
-  const [formData, setFormData] = useState({
-    name: "",
-    dni: "",
-  });
-
-  useEffect(() => {
-    if (employeeEditar) {
-      setFormData({
-        name: employeeEditar.name || "",
-        dni: employeeEditar.dni || "",
-      });
-    }
-  }, [employeeEditar]);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (esEdicion) {
-      console.log("Guardando cambios del empleado existente:", formData);
-      // Lógica para actualizar en BD o estado local...
-    } else {
-      console.log("Creando nuevo empleado:", formData);
-      // Lógica para guardar nuevo empleado...
-    }
-
-    // Al finalizar, navegamos de regreso a la lista de empleados
-    navigate("/employee");
-  };
-
-  const handleCancel = () => {
-    if (onClose) {
-      onClose();
-    } else {
-      navigate("/employee");
-    }
+    if (!valid) return;
+    setBusy(true);
+    const err = await onCreate({ id: Number(form.id), name: form.name, dni: form.dni });
+    setBusy(false);
+    if (err) setError(err);
   };
 
   return (
-    <div className="p-4">
-      <h1 className="modal-title fs-5 mb-2">Agregar Empleado</h1>
-
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nombre</label>
-          <input
-            name="name"
-            type="text"
-            className="form-control input-dark"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">DNI</label>
-          <input
-            name="dni"
-            type="number"
-            className="form-control input-dark"
-            value={formData.dni}
-            onChange={handleChange}
-          />
-        </div>
-      </form>
-      <div className="d-flex justify-content-center">
-        <NavLink to="/employee" className="btn button-orange me-1">
-          Agregar
-        </NavLink>
-
-        {onClose ? (
-          <button
-            type="button"
-            className="btn button-transluce"
-            onClick={handleCancel}
-            data-bs-dismiss="modal"
-          >
-            Cancelar
-          </button>
-        ) : (
-          <NavLink to="/employee" className="btn btn-danger">
-            Cancelar
-          </NavLink>
-        )}
+    <form className="p-3" onSubmit={submit}>
+      <h1 className="modal-title fs-4 mb-3 text-center">Agregar empleado</h1>
+      <div className="mb-3">
+        <label className="form-label">Nombre y apellido</label>
+        <input name="name" type="text" className="form-control input-dark" value={form.name} onChange={change} autoFocus />
       </div>
-    </div>
+      <div className="mb-3">
+        <label className="form-label">Número de documento</label>
+        <input name="dni" type="number" className="form-control input-dark" value={form.dni} onChange={change} />
+      </div>
+      <div className="mb-3">
+        <label className="form-label">ID del reloj</label>
+        <input name="id" type="number" className="form-control input-dark" value={form.id} onChange={change} disabled={!!initial?.id} />
+      </div>
+      {error && <p className="ctz-error">{error}</p>}
+      <div className="d-flex justify-content-center gap-2">
+        <button type="submit" className="btn button-orange" disabled={!valid || busy}>
+          Agregar
+        </button>
+        <button type="button" className="btn button-transluce" onClick={onClose}>
+          Cancelar
+        </button>
+      </div>
+    </form>
   );
 }
 
